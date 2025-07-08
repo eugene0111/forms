@@ -422,7 +422,7 @@ export const Creation = () => {
               </button>
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-                  <img src="/logo.png" alt="DRDO Logo" className="w-10 h-10 object-contain" />
+                  <img src="/logo.png" alt="DRDO Logo" className="w-15 h-15 object-contain" />
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-blue-900">DRDO Admin Panel</h1>
