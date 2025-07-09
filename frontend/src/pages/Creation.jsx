@@ -65,9 +65,9 @@ export const Creation = () => {
       setUsers(response.data);
     } catch (error) {
       setUsers([
-        { _id: '1', username: 'john.doe', email: 'john.doe@drdo.gov.in' },
-        { _id: '2', username: 'jane.smith', email: 'jane.smith@drdo.gov.in' },
-        { _id: '3', username: 'raj.kumar', email: 'raj.kumar@drdo.gov.in' }
+        { _id: '1', username: 'xyz', email: 'xyz@drdo.gov.in' },
+        { _id: '2', username: 'abc', email: 'abc@drdo.gov.in' },
+        { _id: '3', username: 'pqr', email: 'pqr@drdo.gov.in' }
       ]);
     }
   };
@@ -80,7 +80,8 @@ export const Creation = () => {
     }));
   };
 
-  const addField = () => {
+  const addField = (e) => {
+    e.preventDefault(); // Prevent form submission
     const newField = {
       id: Date.now(),
       fieldName: '',
@@ -113,7 +114,10 @@ export const Creation = () => {
     }));
   };
 
-  const addOption = (fieldId) => {
+  const addOption = (fieldId, e) => {
+    e.preventDefault(); // Prevent form submission
+    e.stopPropagation(); // Stop event bubbling
+    
     const field = formData.fields.find(f => f.id === fieldId);
     if (field) {
       updateField(fieldId, {
@@ -131,7 +135,10 @@ export const Creation = () => {
     }
   };
 
-  const removeOption = (fieldId, optionIndex) => {
+  const removeOption = (fieldId, optionIndex, e) => {
+    e.preventDefault(); // Prevent form submission
+    e.stopPropagation(); // Stop event bubbling
+    
     const field = formData.fields.find(f => f.id === fieldId);
     if (field) {
       const newOptions = field.options.filter((_, index) => index !== optionIndex);
@@ -293,6 +300,7 @@ export const Creation = () => {
             <h3 className="font-semibold text-gray-900">Field {index + 1}</h3>
           </div>
           <button
+            type="button"
             onClick={() => removeField(field.id)}
             className="text-red-600 hover:text-red-800 p-1"
           >
@@ -388,7 +396,8 @@ export const Creation = () => {
                     placeholder={`Option ${optionIndex + 1}`}
                   />
                   <button
-                    onClick={() => removeOption(field.id, optionIndex)}
+                    type="button"
+                    onClick={(e) => removeOption(field.id, optionIndex, e)}
                     className="text-red-600 hover:text-red-800 p-1"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -396,7 +405,8 @@ export const Creation = () => {
                 </div>
               ))}
               <button
-                onClick={() => addOption(field.id)}
+                type="button"
+                onClick={(e) => addOption(field.id, e)}
                 className="text-blue-600 hover:text-blue-800 text-sm font-medium"
               >
                 + Add Option
@@ -415,6 +425,7 @@ export const Creation = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
+                type="button"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100"
               >
@@ -432,6 +443,7 @@ export const Creation = () => {
             </div>
             <div className="flex items-center space-x-4">
               <button
+                type="button"
                 onClick={() => navigate('/dashboard')}
                 className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
               >
@@ -464,6 +476,7 @@ export const Creation = () => {
             </div>
             <div className="flex items-center space-x-2">
               <button
+                type="button"
                 onClick={() => setPreviewMode(!previewMode)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   previewMode
