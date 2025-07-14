@@ -115,8 +115,8 @@ export const Creation = () => {
   };
 
   const addOption = (fieldId, e) => {
-    e.preventDefault(); // Prevent form submission
-    e.stopPropagation(); // Stop event bubbling
+    e.preventDefault();
+    e.stopPropagation();
     
     const field = formData.fields.find(f => f.id === fieldId);
     if (field) {

@@ -1,6 +1,8 @@
 const client = require('mongoose');
 
-client.connect("mongodb+srv://eugenesam1105:zOOlvSTLGwGNiCeC@cluster0.o1br6rm.mongodb.net/");
+client.connect("mongodb://localhost:27017/formBuilderDB")
+  .then(() => console.log("Connected to local MongoDB"))
+  .catch(err => console.error("Could not connect to local MongoDB:", err));
 
 const userSchema = new client.Schema({
   username: { type: String, required: true, unique: true },
